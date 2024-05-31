@@ -6,6 +6,14 @@ jobs:
   deploy-app:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          
       - name: check out the code to build server
         uses: actions/checkout@v3
       - name: copy file to server
@@ -18,5 +26,4 @@ jobs:
           source: "./html/*"
           target: "/var/www/html"
           strip_components: 1
-          node-version: '20'
           overwrite: true
